@@ -4,9 +4,9 @@
 
 - Change project to use pnpm instead of npm
 
-## To Run the project you must run:
+## To Run the project you must run
 
-### Install pnpm package manager:
+### Install pnpm package manager
 
 ```terminal
 npm install -g pnpm
@@ -18,7 +18,7 @@ npm install -g pnpm
 npm install
 ```
 
-### after the installation finished, you can run:
+### after the installation finished, you can run
 
 ```terminal
 npm start
