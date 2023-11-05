@@ -85,11 +85,15 @@ export function TeamOverviewPage(): JSX.Element {
         getTeamUsers();
     }, [teamId]);
 
+    const teamOverviewList = React.useMemo(() => {
+        return <List items={mapArray(pageData?.teamMembers ?? [])} isLoading={isLoading} />;
+      }, [pageData, isLoading]);
+
     return (
         <Container>
             <Header title={`Team ${location.state.name}`} />
             {!isLoading && mapTLead(pageData.teamLead)}
-            <List items={mapArray(pageData?.teamMembers ?? [])} isLoading={isLoading} />
+            {teamOverviewList}
         </Container>
     );
 }

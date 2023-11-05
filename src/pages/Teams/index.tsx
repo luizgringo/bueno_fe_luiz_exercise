@@ -36,10 +36,14 @@ export function TeamsPage(): JSX.Element {
         getTeams();
     }, []);
 
+    const teamsList = React.useMemo(() => {
+        return <List items={teamList(teams)} isLoading={isLoading} />;
+      }, [teams, isLoading]);
+
     return (
         <Container>
             <Header title="Teams" showBackButton={false} />
-            <List items={teamList(teams)} isLoading={isLoading} />
+            {teamsList}
         </Container>
     );
 }
