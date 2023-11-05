@@ -17,6 +17,7 @@
 - Add `JSX.Element` to type and define components
 - Use `React.useMemo` on components that handle lists to avoid reerendering and improve performance
 - Change the definition of `var` to `const` for variables that do not require mutability
+- Create `UserCard` componenet to separate the responsibility of the `UserOverview` page and the `Card` component specific to the page context
 
 ## To Run the project you must run
 
