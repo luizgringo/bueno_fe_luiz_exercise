@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {useLocation} from 'react-router-dom';
-import Card from '../../components/Card';
+import {Card} from '../../components/Card';
 import {Container} from '../../components/GlobalComponents';
-import Header from '../../components/Header';
+import {Header} from '../../components/Header';
 import {UserData} from './types';
 
-var mapU = (user: UserData) => {
-    var columns = [
+const mapU = (user: UserData) => {
+    const columns = [
         {
             key: 'Name',
             value: `${user.firstName} ${user.lastName}`,
@@ -23,7 +23,7 @@ var mapU = (user: UserData) => {
     return <Card columns={columns} hasNavigation={false} navigationProps={user} />;
 };
 
-const UserOverviewPage = () => {
+export function UserOverviewPage(): JSX.Element {
     const location = useLocation();
     return (
         <Container>
@@ -33,6 +33,4 @@ const UserOverviewPage = () => {
             {mapU(location.state)}
         </Container>
     );
-};
-
-export default UserOverviewPage;
+}

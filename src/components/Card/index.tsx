@@ -4,7 +4,7 @@ import {UserData} from 'pages/UserOverview/types';
 import {Team} from 'pages/Teams/types';
 import {Container} from './styles';
 
-interface Props {
+interface CardProps {
     id?: string;
     url?: string;
     columns: Array<{
@@ -15,13 +15,8 @@ interface Props {
     navigationProps?: UserData | Team;
 }
 
-const Card = ({
-    id,
-    columns,
-    url,
-    hasNavigation = true,
-    navigationProps = null,
-}: Props): JSX.Element => {
+export function Card(props: CardProps): JSX.Element {
+    const {id, columns, url, hasNavigation = true, navigationProps = null} = props;
     const navigate = useNavigate();
 
     return (
@@ -44,6 +39,4 @@ const Card = ({
             ))}
         </Container>
     );
-};
-
-export default Card;
+}

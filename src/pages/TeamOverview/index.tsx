@@ -3,10 +3,10 @@ import {useLocation, useParams} from 'react-router-dom';
 import {UserData} from 'pages/UserOverview/types';
 import {ListItem} from 'components/List/types';
 import {getTeamOverview, getUserData} from '../../api';
-import Card from '../../components/Card';
+import {Card} from '../../components/Card';
 import {Container} from '../../components/GlobalComponents';
-import Header from '../../components/Header';
-import List from '../../components/List';
+import {Header} from '../../components/Header';
+import {List} from '../../components/List';
 
 var mapArray = (users: UserData[]) => {
     return users.map(u => {
@@ -60,7 +60,7 @@ interface PageState {
     teamMembers?: UserData[];
 }
 
-const TeamOverviewPage = () => {
+export function TeamOverviewPage(): JSX.Element {
     const location = useLocation();
     const {teamId} = useParams();
     const [pageData, setPageData] = React.useState<PageState>({});
@@ -92,6 +92,4 @@ const TeamOverviewPage = () => {
             <List items={mapArray(pageData?.teamMembers ?? [])} isLoading={isLoading} />
         </Container>
     );
-};
-
-export default TeamOverviewPage;
+}

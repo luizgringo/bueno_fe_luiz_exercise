@@ -2,13 +2,15 @@ import * as React from 'react';
 import {useNavigate} from 'react-router-dom';
 import {HeaderContainer, NavigationHeader, BackButton, Title} from './styles';
 
-interface Props {
+interface HeaderProps {
     title: string;
     showBackButton?: boolean;
 }
 
-const Header = ({title, showBackButton = true}: Props) => {
+export function Header(props: HeaderProps): JSX.Element {
+    const {title, showBackButton = true} = props;
     const navigate = useNavigate();
+
     return (
         <HeaderContainer>
             <NavigationHeader>
@@ -25,6 +27,4 @@ const Header = ({title, showBackButton = true}: Props) => {
             </NavigationHeader>
         </HeaderContainer>
     );
-};
-
-export default Header;
+}

@@ -7,7 +7,14 @@
 - Remove types folder and move their respective interfaces to their contexts
 - Improvement of variable naming to be more descriptive
 - Create folders to organize the pages
-- Rename "Teams" type to "Team" because this instance refeers to a one instance of "Team"
+- Rename `Teams` type to `Team` because this instance refeers to a one instance of `Team`
+- Favoring the syntax `function foo() {}` over `const foo = ()=> {}`,
+  leaving the syntax with `const` only in necessary cases. functions with the syntax
+  of `const` creates some code organization restrictions, forcing you to declare it before the
+  use.
+- Destructuring `props` inside components
+- Giving descriptive names to their respective `props` components interface
+- Add `JSX.Element` to type and define components
 
 ## To Run the project you must run
 

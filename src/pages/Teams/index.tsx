@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {ListItem} from 'components/List/types';
 import {getTeams as fetchTeams} from '../../api';
-import Header from '../../components/Header';
-import List from '../../components/List';
+import {Header} from '../../components/Header';
+import {List} from '../../components/List';
 import {Container} from '../../components/GlobalComponents';
 import {Team} from './types';
 
-var MapT = (teams: Team[]) => {
+const teamList = (teams: Team[]) => {
     return teams.map(team => {
         var columns = [
             {
@@ -23,7 +23,7 @@ var MapT = (teams: Team[]) => {
     });
 };
 
-const TeamsPage = () => {
+export function TeamsPage(): JSX.Element {
     const [teams, setTeams] = React.useState<any>([]);
     const [isLoading, setIsLoading] = React.useState<any>(true);
 
@@ -39,9 +39,7 @@ const TeamsPage = () => {
     return (
         <Container>
             <Header title="Teams" showBackButton={false} />
-            <List items={MapT(teams)} isLoading={isLoading} />
+            <List items={teamList(teams)} isLoading={isLoading} />
         </Container>
     );
-};
-
-export default TeamsPage;
+}
