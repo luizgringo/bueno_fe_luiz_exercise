@@ -8,7 +8,7 @@ import {Team} from './types';
 
 const teamList = (teams: Team[]) => {
     return teams.map(team => {
-        var columns = [
+        const columns = [
             {
                 key: 'Name',
                 value: team.name,

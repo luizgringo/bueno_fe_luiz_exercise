@@ -16,6 +16,7 @@
 - Giving descriptive names to their respective `props` components interface
 - Add `JSX.Element` to type and define components
 - Use `React.useMemo` on components that handle lists to avoid reerendering and improve performance
+- Change the definition of `var` to `const` for variables that do not require mutability
 
 ## To Run the project you must run
 

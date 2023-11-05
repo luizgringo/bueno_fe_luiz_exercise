@@ -8,9 +8,9 @@ import {Container} from '../../components/GlobalComponents';
 import {Header} from '../../components/Header';
 import {List} from '../../components/List';
 
-var mapArray = (users: UserData[]) => {
+const mapArray = (users: UserData[]) => {
     return users.map(u => {
-        var columns = [
+        const columns = [
             {
                 key: 'Name',
                 value: `${u.firstName} ${u.lastName}`,
@@ -33,8 +33,8 @@ var mapArray = (users: UserData[]) => {
     }) as ListItem[];
 };
 
-var mapTLead = tlead => {
-    var columns = [
+const mapTLead = tlead => {
+    const columns = [
         {
             key: 'Team Lead',
             value: '',
@@ -67,12 +67,12 @@ export function TeamOverviewPage(): JSX.Element {
     const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
     React.useEffect(() => {
-        var getTeamUsers = async () => {
+        const getTeamUsers = async () => {
             const {teamLeadId, teamMemberIds = []} = await getTeamOverview(teamId);
             const teamLead = await getUserData(teamLeadId);
 
             const teamMembers = [];
-            for(var teamMemberId of teamMemberIds) {
+            for(const teamMemberId of teamMemberIds) {
                 const data = await getUserData(teamMemberId);
                 teamMembers.push(data);
             }
