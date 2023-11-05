@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {useLocation} from 'react-router-dom';
-import {UserData} from 'types';
-import Card from '../components/Card';
-import {Container} from '../components/GlobalComponents';
-import Header from '../components/Header';
+import Card from '../../components/Card';
+import {Container} from '../../components/GlobalComponents';
+import Header from '../../components/Header';
+import {UserData} from './types';
 
 var mapU = (user: UserData) => {
     var columns = [
@@ -23,7 +23,7 @@ var mapU = (user: UserData) => {
     return <Card columns={columns} hasNavigation={false} navigationProps={user} />;
 };
 
-const UserOverview = () => {
+const UserOverviewPage = () => {
     const location = useLocation();
     return (
         <Container>
@@ -35,4 +35,4 @@ const UserOverview = () => {
     );
 };
 
-export default UserOverview;
+export default UserOverviewPage;

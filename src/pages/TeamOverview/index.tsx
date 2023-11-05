@@ -1,11 +1,12 @@
 import * as React from 'react';
 import {useLocation, useParams} from 'react-router-dom';
-import {ListItem, UserData} from 'types';
-import {getTeamOverview, getUserData} from '../api';
-import Card from '../components/Card';
-import {Container} from '../components/GlobalComponents';
-import Header from '../components/Header';
-import List from '../components/List';
+import {UserData} from 'pages/UserOverview/types';
+import {ListItem} from 'components/List/types';
+import {getTeamOverview, getUserData} from '../../api';
+import Card from '../../components/Card';
+import {Container} from '../../components/GlobalComponents';
+import Header from '../../components/Header';
+import List from '../../components/List';
 
 var mapArray = (users: UserData[]) => {
     return users.map(u => {
@@ -59,7 +60,7 @@ interface PageState {
     teamMembers?: UserData[];
 }
 
-const TeamOverview = () => {
+const TeamOverviewPage = () => {
     const location = useLocation();
     const {teamId} = useParams();
     const [pageData, setPageData] = React.useState<PageState>({});
@@ -93,4 +94,4 @@ const TeamOverview = () => {
     );
 };
 
-export default TeamOverview;
+export default TeamOverviewPage;

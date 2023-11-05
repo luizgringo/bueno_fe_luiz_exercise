@@ -1,21 +1,21 @@
 import React from 'react';
 import {createBrowserRouter} from 'react-router-dom';
-import TeamOverview from './pages/TeamOverview';
-import Teams from './pages/Teams';
-import UserOverview from './pages/UserOverview';
+import TeamOverviewPage from './pages/TeamOverview';
+import TeamsPage from './pages/Teams';
+import UserOverviewPage from './pages/UserOverview';
 
 const router = createBrowserRouter([
   {
       path: '/',
-      element: <Teams />,
+      element: <TeamsPage />,
   },
   {
       path: '/team/:teamId',
-      element: <TeamOverview />,
+      element: <TeamOverviewPage />,
   },
   {
       path: '/user/:useId',
-      element: <UserOverview />,
+      element: <UserOverviewPage />,
   },
 ]);
 
