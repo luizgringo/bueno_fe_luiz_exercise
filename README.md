@@ -26,6 +26,7 @@
 - Add Card Animation
 - Add Card Image Placeholder for Teams and Users
 - Improve Layout and User Experience
+- Adds search component to teams page
 
 OBS: I tried to use the `avatarUrl` that comes from the `users` endPoint to display their respective avatars, but all the images that were coming were broken.
 So i used `https://pravatar.cc/` to serve as a avatar placeholder.
