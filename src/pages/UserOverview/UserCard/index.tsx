@@ -15,5 +15,5 @@ export function UserCard(props: UserCardProps): JSX.Element {
         {key: 'Location', value: user.location},
     ];
 
-    return <Card columns={columns} hasNavigation={false} navigationProps={user} />;
+    return <Card columns={columns} hasNavigation={false} navigationProps={user} avatar="https://i.pravatar.cc/100"/>;
 }

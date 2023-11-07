@@ -16,5 +16,5 @@ export function TeamLeadCard(props: TeamLeadCardProps): JSX.Element {
         {key: 'Location', value: teamLead.location},
     ];
 
-    return <Card columns={columns} url={`/user/${teamLead.id}`} navigationProps={teamLead} />;
+    return <Card columns={columns} url={`/user/${teamLead.id}`} navigationProps={teamLead}/>;
 }

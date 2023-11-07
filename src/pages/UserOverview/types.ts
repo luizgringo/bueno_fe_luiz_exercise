@@ -4,5 +4,4 @@ export interface UserData {
   lastName: string;
   displayName: string;
   location: string;
-  avatar: string;
 }
