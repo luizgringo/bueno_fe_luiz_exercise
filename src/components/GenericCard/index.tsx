@@ -66,8 +66,8 @@ export function GenericCard(props: CardProps): JSX.Element {
                         <Typography gutterBottom variant="h5" component="div">
                             {name}
                         </Typography>
-                        {columns.map(({key: columnKey, value}) => (
-                            <Typography key={columnKey} variant="body2" color="text.secondary">
+                        {columns.map(({key: columnKey, value}, index) => (
+                            <Typography data-testid={`column-${index}`} key={columnKey} variant="body2" color="text.secondary">
                                 <strong>{columnKey}:</strong>&nbsp;{value}
                             </Typography>
                         ))}

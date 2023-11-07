@@ -1,6 +1,6 @@
 import React from 'react';
 import {render, screen} from '@testing-library/react';
-import UserOverview from '../UserOverview';
+import {UserOverviewPage} from '..';
 
 jest.mock('react-router-dom', () => ({
     useLocation: () => ({
@@ -11,15 +11,17 @@ jest.mock('react-router-dom', () => ({
             location: 'location',
         },
     }),
-    useNavigate: () => ({}),
+    useNavigate: () => jest.fn(),
 }));
 
 describe('UserOverview', () => {
     it('should render UserOverview', () => {
-        render(<UserOverview />);
+        render(<UserOverviewPage />);
 
-        expect(screen.getByText('Test User')).toBeInTheDocument();
-        expect(screen.getByText('userName')).toBeInTheDocument();
-        expect(screen.getByText('location')).toBeInTheDocument();
+        const expectedTexts = ['Test User', 'userName', 'location'];
+
+        expectedTexts.forEach(text => {
+            expect(screen.getByText(text)).toBeInTheDocument();
+        });
     });
 });

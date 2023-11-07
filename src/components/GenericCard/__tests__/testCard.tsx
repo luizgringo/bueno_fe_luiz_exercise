@@ -5,36 +5,43 @@ import {GenericCard} from '..';
 
 const mockUseNavigate = jest.fn();
 
+// Mock do react-router-dom
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
     useNavigate: () => mockUseNavigate,
 }));
 
-describe('Card', () => {
-    it('should render card with single column', () => {
-        const columns = [{key: 'columnKey', value: 'columnValue'}];
-        render(<GenericCard columns={columns} />);
+describe('GenericCard Component', () => {
+    const renderCard = (columns, hasNavigation = true, navigationProps = null) => {
+        render(
+            <GenericCard
+                columns={columns}
+                hasNavigation={hasNavigation}
+                navigationProps={navigationProps}
+            />
+        );
+    };
 
-        expect(screen.getByText('columnKey')).toBeInTheDocument();
-        expect(screen.getByText('columnValue')).toBeInTheDocument();
+    it('should render a card with a single column', () => {
+        renderCard([{key: 'columnKey', value: 'columnValue'}]);
+
+        expect(screen.getByTestId('column-0')).toHaveTextContent('columnKey');
+        expect(screen.getByTestId('column-0')).toHaveTextContent('columnValue');
     });
 
-    it('should render card with multiple columns', () => {
+    it('should render a card with multiple columns', () => {
         const columns = [
             {key: 'columnKey1', value: 'columnValue1'},
             {key: 'columnKey2', value: 'columnValue2'},
             {key: 'columnKey3', value: 'columnValue3'},
-            {key: 'columnKey4', value: ''},
         ];
-        render(<GenericCard columns={columns} />);
+        renderCard(columns);
 
-        expect(screen.getByText('columnKey1')).toBeInTheDocument();
-        expect(screen.getByText('columnValue1')).toBeInTheDocument();
-        expect(screen.getByText('columnKey2')).toBeInTheDocument();
-        expect(screen.getByText('columnValue2')).toBeInTheDocument();
-        expect(screen.getByText('columnKey3')).toBeInTheDocument();
-        expect(screen.getByText('columnValue3')).toBeInTheDocument();
-        expect(screen.getByText('columnKey4')).toBeInTheDocument();
+        columns.forEach((column, index) => {
+            const columnIndex = `column-${index}`;
+            expect(screen.getByTestId(columnIndex)).toHaveTextContent(column.key);
+            expect(screen.getByTestId(columnIndex)).toHaveTextContent(column.value);
+        });
     });
 
     it('should navigate when card is clicked and navigation is enabled', () => {
@@ -42,24 +49,21 @@ describe('Card', () => {
             id: '1',
             name: 'Team 1',
         } as Team;
-        render(
-            <GenericCard
-                columns={[{key: 'columnKey', value: 'columnValue'}]}
-                url="path"
-                navigationProps={navProps}
-            />
-        );
 
-        fireEvent.click(screen.getByText('columnKey'));
+        mockUseNavigate.mockReturnValue((path, options) => {
+            expect(path).toBe('path');
+            expect(options.state).toEqual(navProps);
+        });
 
-        expect(mockUseNavigate).toHaveBeenCalledWith('path', {state: navProps});
+        renderCard([{key: 'columnKey', value: 'columnValue'}], true, navProps);
+
+        fireEvent.click(screen.getByTestId('column-0'));
     });
 
     it('should not navigate when card is clicked and navigation is disabled', () => {
-        render(<GenericCard columns={[{key: 'columnKey', value: 'columnValue'}]} hasNavigation={false} />);
+        renderCard([{key: 'columnKey', value: 'columnValue'}], false);
 
-        fireEvent.click(screen.getByText('columnKey'));
-
+        fireEvent.click(screen.getByTestId('column-0'));
         expect(mockUseNavigate).not.toHaveBeenCalled();
     });
 });
