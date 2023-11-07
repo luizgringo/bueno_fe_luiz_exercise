@@ -21,6 +21,7 @@
       "@temposoftware/tempo-i18n": ["./translate.ts"]
     }
   },
+  "types": ["node", "jest", "@testing-library/jest-dom"],
   "include": ["src"],
   "exclude": ["node_modules"]
 }
