@@ -8,6 +8,8 @@ export interface ListItemColumn {
 export interface ListItem {
   id: string;
   url?: string;
-  columns: Array<ListItemColumn>;
+  columns?: Array<ListItemColumn>;
   navigationProps?: UserData | Team;
+  name?: string;
+  isTeam?: boolean;
 }

@@ -1,5 +1,7 @@
 import React, {useEffect, useState, useMemo} from 'react';
 import {ListItem} from 'components/List/types';
+import InputAdornment from '@mui/material/InputAdornment';
+import TextField from '@mui/material/TextField';
 import {getTeams as fetchTeams} from '../../api';
 import {Header} from '../../components/Header';
 import {List} from '../../components/List';
@@ -10,12 +12,9 @@ const teamMap = (teams: Team[]): ListItem[] => {
     return teams.map(team => ({
         id: team.id,
         url: `/team/${team.id}`,
-        columns: [
-            {
-                key: 'Name',
-                value: team.name,
-            },
-        ],
+        name: team.name,
+        isTeam: true,
+        columns: [],
         navigationProps: team,
     }));
 };
@@ -44,7 +43,21 @@ export function TeamsPage(): JSX.Element {
 
     return (
         <Container>
-            <Header title="Teams" showBackButton={false} />
+            <Header title="Teams" />
+            <TextField
+                id="outlined-basic"
+                label="Search Teams"
+                placeholder='Type something to search teams here'
+                variant="outlined"
+                sx={{width: '600px', margin: '30px'}}
+                InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        🔎
+                      </InputAdornment>
+                    ),
+                  }}
+            />
             {teamsList}
         </Container>
     );

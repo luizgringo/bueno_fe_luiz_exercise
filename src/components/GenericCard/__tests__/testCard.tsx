@@ -1,7 +1,7 @@
 import React from 'react';
 import {fireEvent, render, screen} from '@testing-library/react';
 import {Team} from 'pages/Teams/types';
-import {Card} from '..';
+import {GenericCard} from '..';
 
 const mockUseNavigate = jest.fn();
 
@@ -13,7 +13,7 @@ jest.mock('react-router-dom', () => ({
 describe('Card', () => {
     it('should render card with single column', () => {
         const columns = [{key: 'columnKey', value: 'columnValue'}];
-        render(<Card columns={columns} />);
+        render(<GenericCard columns={columns} />);
 
         expect(screen.getByText('columnKey')).toBeInTheDocument();
         expect(screen.getByText('columnValue')).toBeInTheDocument();
@@ -26,7 +26,7 @@ describe('Card', () => {
             {key: 'columnKey3', value: 'columnValue3'},
             {key: 'columnKey4', value: ''},
         ];
-        render(<Card columns={columns} />);
+        render(<GenericCard columns={columns} />);
 
         expect(screen.getByText('columnKey1')).toBeInTheDocument();
         expect(screen.getByText('columnValue1')).toBeInTheDocument();
@@ -43,7 +43,7 @@ describe('Card', () => {
             name: 'Team 1',
         } as Team;
         render(
-            <Card
+            <GenericCard
                 columns={[{key: 'columnKey', value: 'columnValue'}]}
                 url="path"
                 navigationProps={navProps}
@@ -56,7 +56,7 @@ describe('Card', () => {
     });
 
     it('should not navigate when card is clicked and navigation is disabled', () => {
-        render(<Card columns={[{key: 'columnKey', value: 'columnValue'}]} hasNavigation={false} />);
+        render(<GenericCard columns={[{key: 'columnKey', value: 'columnValue'}]} hasNavigation={false} />);
 
         fireEvent.click(screen.getByText('columnKey'));
 

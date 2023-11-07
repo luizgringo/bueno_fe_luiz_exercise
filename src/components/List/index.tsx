@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Card} from 'components/Card';
+import {GenericCard} from 'components/GenericCard';
 import {Spinner} from '../Spinner';
 import {Container} from './styles';
 import {ListItem} from './types';
@@ -17,15 +17,17 @@ export function List(props: ListProps): JSX.Element {
         <Container>
             {isLoading && <Spinner />}
             {!isLoading &&
-                items.map(({url, id, columns, navigationProps}, index) => {
+                items.map(({url, id, columns, navigationProps, name, isTeam}, index) => {
                     return (
-                        <Card
+                        <GenericCard
                             key={`${id}-${index}`}
                             id={id}
                             columns={columns}
                             navigationProps={navigationProps}
                             hasNavigation={hasNavigation}
                             url={url}
+                            name={name}
+                            isTeam={isTeam}
                         />
                     );
                 })}

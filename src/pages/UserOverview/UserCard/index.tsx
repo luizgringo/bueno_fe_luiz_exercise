@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card} from 'components/Card';
+import {GenericCard} from 'components/GenericCard';
 import {UserData} from '../types';
 
 interface UserCardProps {
@@ -10,10 +10,17 @@ export function UserCard(props: UserCardProps): JSX.Element {
     const {user} = props;
 
     const columns = [
-        {key: 'Name', value: `${user.firstName} ${user.lastName}`},
         {key: 'Display Name', value: user.displayName},
         {key: 'Location', value: user.location},
     ];
 
-    return <Card columns={columns} hasNavigation={false} navigationProps={user} avatar="https://i.pravatar.cc/100"/>;
+    return (
+        <GenericCard
+            columns={columns}
+            hasNavigation={false}
+            navigationProps={user}
+            name={`${user.firstName} ${user.lastName}`}
+            avatar="https://i.pravatar.cc/345"
+        />
+    );
 }
