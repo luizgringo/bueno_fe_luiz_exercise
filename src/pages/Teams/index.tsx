@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useEffect, useState, useMemo} from 'react';
 import {ListItem} from 'components/List/types';
 import {getTeams as fetchTeams} from '../../api';
 import {Header} from '../../components/Header';
@@ -6,39 +6,41 @@ import {List} from '../../components/List';
 import {Container} from '../../components/GlobalComponents';
 import {Team} from './types';
 
-const teamList = (teams: Team[]) => {
-    return teams.map(team => {
-        const columns = [
+const teamMap = (teams: Team[]): ListItem[] => {
+    return teams.map(team => ({
+        id: team.id,
+        url: `/team/${team.id}`,
+        columns: [
             {
                 key: 'Name',
                 value: team.name,
             },
-        ];
-        return {
-            id: team.id,
-            url: `/team/${team.id}`,
-            columns,
-            navigationProps: team,
-        } as ListItem;
-    });
+        ],
+        navigationProps: team,
+    }));
 };
 
 export function TeamsPage(): JSX.Element {
-    const [teams, setTeams] = React.useState<any>([]);
-    const [isLoading, setIsLoading] = React.useState<any>(true);
+    const [teams, setTeams] = useState<Team[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
-    React.useEffect(() => {
+    useEffect(() => {
         const getTeams = async () => {
-            const response = await fetchTeams();
-            setTeams(response);
-            setIsLoading(false);
+            try {
+                const response = await fetchTeams();
+                setTeams(response);
+                setIsLoading(false);
+            } catch (error) {
+                // eslint-disable-next-line no-console
+                console.error('Error trying to fetchTeams!');
+            }
         };
         getTeams();
     }, []);
 
-    const teamsList = React.useMemo(() => {
-        return <List items={teamList(teams)} isLoading={isLoading} />;
-      }, [teams, isLoading]);
+    const teamsList = useMemo(() => {
+        return <List items={teamMap(teams)} isLoading={isLoading} />;
+    }, [teams, isLoading]);
 
     return (
         <Container>

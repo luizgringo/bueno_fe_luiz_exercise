@@ -13,10 +13,11 @@ interface CardProps {
     }>;
     hasNavigation?: boolean;
     navigationProps?: UserData | Team;
+    avatarUrl?: string;
 }
 
 export function Card(props: CardProps): JSX.Element {
-    const {id, columns, url, hasNavigation = true, navigationProps = null} = props;
+    const {id, columns, url, hasNavigation = true, navigationProps = null, avatarUrl} = props;
     const navigate = useNavigate();
 
     return (
@@ -37,6 +38,7 @@ export function Card(props: CardProps): JSX.Element {
                     <strong>{columnKey}</strong>&nbsp;{value}
                 </p>
             ))}
+            <img src={avatarUrl} alt="Avatar" />
         </Container>
     );
 }

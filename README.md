@@ -18,6 +18,9 @@
 - Use `React.useMemo` on components that handle lists to avoid reerendering and improve performance
 - Change the definition of `var` to `const` for variables that do not require mutability
 - Create `UserCard` componenet to separate the responsibility of the `UserOverview` page and the `Card` component specific to the page context
+- Create `TeamLeadCard` componenet to separate the responsibility of the `TeamOverview` page and the `Card` component specific to the page context
+
+OBS: I tried to use the `avatarUrl` that comes from the `users` endPoint to display their respective avatars, but all the images that were coming were broken.
 
 ## To Run the project you must run
 
