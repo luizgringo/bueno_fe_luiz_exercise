@@ -44,9 +44,9 @@ export function TeamsPage(): JSX.Element {
         return <List items={teamMap(teams)} isLoading={isLoading} />;
     }, [teams, isLoading]);
 
-    const handleKeyUp = e => {
+    const handleKeyUp = (e: { target: { value: any; }; }) => {
         const teamsMatched = [];
-        _.find(originalTeamList, team => {
+        _.find(originalTeamList, (team: { name: string; }) => {
             const typedName = e.target.value;
             if (team.name.toLowerCase().includes(typedName.toLowerCase())) {
                 teamsMatched.push(team);
