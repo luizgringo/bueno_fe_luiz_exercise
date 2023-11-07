@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useMemo} from 'react';
-import {useLocation, useParams} from 'react-router-dom';
+import {useLocation, useNavigate, useParams} from 'react-router-dom';
 import {UserData} from 'pages/UserOverview/types';
 import {ListItem} from 'components/List/types';
 import _ from 'lodash';
@@ -41,6 +41,7 @@ const teamMemberMap = (users: UserData[]): ListItem[] => {
 };
 
 export function TeamOverviewPage(): JSX.Element {
+    const navigate = useNavigate();
     const location = useLocation();
     const {teamId} = useParams();
     const [teamLead, setTeamLead] = useState<UserData>();
@@ -93,7 +94,7 @@ export function TeamOverviewPage(): JSX.Element {
     return (
         <Container>
             <Breadcrumbs separator="›" aria-label="breadcrumb">
-                <Link underline="hover" key="2" href="/">
+                <Link underline="hover" key="2" href="" onClick={() => navigate('/')}>
                     🏠 Home / Teams Page
                 </Link>
                 <Typography key="3">👪 Team - {location.state.name}</Typography>

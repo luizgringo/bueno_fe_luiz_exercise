@@ -25,7 +25,8 @@ export function UserOverviewPage(): JSX.Element {
                 <Link
                     underline="hover"
                     key="2"
-                    href="/"
+                    href=""
+                    onClick={() => navigate('/')}
                 >
                     🏠 Home / Teams Page
                 </Link>
