@@ -1,5 +1,9 @@
 # Tempo Frontend challenge
 
+![Example of navigation](https://s5.gifyu.com/images/S8DrI.gif)
+
+You can see the deployed version at: <https://team-search-delta.vercel.app/>
+
 ## Solution Improvement
 
 - Change project to use pnpm instead of npm.
